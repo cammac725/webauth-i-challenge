@@ -1,16 +1,12 @@
 const express = require('express');
-const helmet = require('helmet');
-const cors = require('cors');
-const bcrypt = require('bcryptjs');
 
 const Users = require('../users/users-model');
-const restricted = require('../config/middleware')
+const restricted = require('../config/authentication')
+const configMiddleware = require('../config/middleware');
 
 const server = express();
 
-server.use(helmet());
-server.use(cors());
-server.use(express.json());
+configMiddleware(server);
 
 server.get('/', (req, res) => {
   res.send("Fire in the hole!")
